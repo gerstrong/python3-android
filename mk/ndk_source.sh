@@ -19,7 +19,7 @@ case "${NDK_REV}" in
   10*)
       NDK_EXT=bin
       ;;
-  11*|12*)
+  11*|12*|13*)
       NDK_EXT=zip
       ;;
   *)
