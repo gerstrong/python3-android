@@ -16,14 +16,14 @@ case $(uname -m) in
 esac
 
 case "${NDK_REV}" in
+  9*)
+      NDK_EXT=tar.bz2
+      ;;
   10*)
       NDK_EXT=bin
       ;;
-  11*|12*|13*)
-      NDK_EXT=zip
-      ;;
   *)
-      NDK_EXT=tar.bz2
+      NDK_EXT=zip
       ;;
 esac
 
@@ -32,11 +32,11 @@ then
   echo http://artifactory.ops.cld/artifactory/ThirdParty/COTS/android/android-ndk/r${NDK_REV}/android-ndk-r${NDK_REV}-$(uname -s | tr '[A-Z]' '[a-z'])-${NDK_ARCH}.${NDK_EXT}
 else
   case "${NDK_REV}" in
-    11*|12*)
-        echo http://dl.google.com/android/repository/android-ndk-r${NDK_REV}-$(uname -s | tr '[A-Z]' '[a-z'])-${NDK_ARCH}.${NDK_EXT}
+    9*|10*)
+        echo http://dl.google.com/android/ndk/android-ndk-r${NDK_REV}-$(uname -s | tr '[A-Z]' '[a-z'])-${NDK_ARCH}.${NDK_EXT}
         ;;
     *)
-        echo http://dl.google.com/android/ndk/android-ndk-r${NDK_REV}-$(uname -s | tr '[A-Z]' '[a-z'])-${NDK_ARCH}.${NDK_EXT}
+        echo http://dl.google.com/android/repository/android-ndk-r${NDK_REV}-$(uname -s | tr '[A-Z]' '[a-z'])-${NDK_ARCH}.${NDK_EXT}
         ;;
   esac 
 fi
