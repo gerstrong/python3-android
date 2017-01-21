@@ -1,7 +1,9 @@
+#!/bin/sh
 pushd src >/dev/null
 
 rm -rf "Python-${VERSION}"
 tar -xf "Python-${VERSION}.tar.xz" || exit 1
+
 pushd "Python-${VERSION}" >/dev/null
 
 # Build host components.
@@ -20,7 +22,9 @@ patch -p1  < "${FILESDIR}/${PACKAGE}-python-misc.patch" || exit 1
 patch -p1  < "${FILESDIR}/${PACKAGE}-android-locale.patch" || exit 1
 patch -Ep1 < "${FILESDIR}/${PACKAGE}-android-libmpdec.patch" || exit 1
 patch -p1  < "${FILESDIR}/${PACKAGE}-android-misc.patch" || exit 1
+patch -p1  < "${FILESDIR}/${PACKAGE}-android-print.patch" || exit 1
 patch -p1  < "${FILESDIR}/${PACKAGE}-accept4.patch" || exit 1
+
 
 ./configure CROSS_COMPILE_TARGET=yes HOSTPYTHON="$(pwd)/hostpython" CONFIG_SITE=config.site --prefix="${PREFIX}" --host="${TARGET}" --build="${HOST}" --disable-ipv6 --enable-shared --without-ensurepip || exit 1
 make CROSS_COMPILE_TARGET=yes HOSTPYTHON="$(pwd)/hostpython" HOSTPGEN="$(pwd)/Parser/hostpgen" || exit 1
