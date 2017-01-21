@@ -20,6 +20,7 @@ else
 endif
 ifeq ("$$(wildcard build/.built-$(BUILD_IDENTIFIER)/$1-$2)","")
 	$$(info Building $1 $2...)
+	echo ANDROID_PREFIX=${ANDROID_PREFIX}
 	@bash --noprofile --norc mk/build_single.sh $1 $2
 	@touch build/.built-$(BUILD_IDENTIFIER)/$1-$2
 endif
@@ -68,6 +69,7 @@ python_gdbm: gdbm
 # Android NDK.
 ndk:
 	$(info Checking NDK sources...)
+#TODO: Let this system search for another NDK Path. We could already have downloaded it...
 	@wget -N -P "sdk/" $(shell bash mk/ndk_source.sh)
 ifeq ("$(wildcard build/.built-ndk-$(BUILD_IDENTIFIER))","")
 	$(info Preparing NDK toolchain...)
