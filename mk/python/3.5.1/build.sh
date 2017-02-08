@@ -29,6 +29,7 @@ patch -p1  < "${FILESDIR}/${PACKAGE}-android-misc.patch" || exit 1
 patch -p1  < "${FILESDIR}/${PACKAGE}-android-print.patch" || exit 1 
 patch -p1  < "${FILESDIR}/${PACKAGE}-android-print-fatalerror.patch" || exit 1 
 patch -p1  < "${FILESDIR}/${PACKAGE}-accept4.patch" || exit 1
+patch -p1  < "${FILESDIR}/115-optional-ossaudiodev.patch" || exit 1
 
 
 else
